@@ -53,7 +53,7 @@ namespace EDDiscovery.UserControls
             travelhistorytext = "Travel History Entry".Tx(this);
             dataGridViewModules.MakeDoubleBuffered();
             dataGridViewModules.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
-            dataGridViewModules.RowTemplate.Height = 26;
+            dataGridViewModules.RowTemplate.Height = LogicalToDeviceUnits(26);
 
             buttonExtCoriolis.Visible = buttonExtEDShipyard.Visible = buttonExtConfigure.Visible = false;
 
@@ -437,12 +437,12 @@ namespace EDDiscovery.UserControls
 
             ExtendedControls.ConfigurableForm f = new ExtendedControls.ConfigurableForm();
 
-            int width = 430;
-            int ctrlleft = 150;
+            int width = LogicalToDeviceUnits(430);
+            int ctrlleft = LogicalToDeviceUnits(150);
 
             f.Add(new ExtendedControls.ConfigurableForm.Entry("L", typeof(Label), "Fuel Warning:".Tx(this,"FW"), new Point(10, 40), new Size(140, 24), ""));
             f.Add(new ExtendedControls.ConfigurableForm.Entry("FuelWarning", typeof(ExtendedControls.NumberBoxDouble), 
-                last_si.FuelWarningPercent.ToStringInvariant(), new Point(ctrlleft, 40), new Size(width - ctrlleft - 20, 24), "Enter fuel warning level in % (0 = off, 1-100%)".Tx(this,"TTF"))
+                last_si.FuelWarningPercent.ToStringInvariant(), new Point(ctrlleft, LogicalToDeviceUnits(40)), new Size(width - ctrlleft - LogicalToDeviceUnits(20), LogicalToDeviceUnits(24)), "Enter fuel warning level in % (0 = off, 1-100%)".Tx(this,"TTF"))
                 { numberboxdoubleminimum = 0, numberboxdoublemaximum = 100, numberboxformat = "0.##" });
 
             f.Add(new ExtendedControls.ConfigurableForm.Entry("OK", typeof(ExtendedControls.ExtButton), "OK".Tx(), new Point(width - 100, 70), new Size(80, 24), "Press to Accept".Tx(this)));
@@ -493,7 +493,7 @@ namespace EDDiscovery.UserControls
                     Form mainform = FindForm();
                     ExtendedControls.InfoForm frm = new ExtendedControls.InfoForm();
                     frm.Info("Module Information".Tx(this,"MI"), mainform.Icon, tt);
-                    frm.Size = new Size(600, 400);
+                    frm.Size = new Size(LogicalToDeviceUnits(600), LogicalToDeviceUnits(400));
                     frm.StartPosition = FormStartPosition.CenterParent;
                     frm.Show(mainform);
                 }

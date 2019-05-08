@@ -48,7 +48,7 @@ namespace EDDiscovery.UserControls
         {
             dataGridViewLedger.MakeDoubleBuffered();
             dataGridViewLedger.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
-            dataGridViewLedger.RowTemplate.Height = 26;
+            dataGridViewLedger.RowTemplate.Height = LogicalToDeviceUnits(26);
 
             var jes = EliteDangerousCore.JournalEntry.GetNameImageOfEvents(new string[] { "Ledger" });
             string cashtype = string.Join(";", jes.Select(x=>x.Item1) ) + ";";

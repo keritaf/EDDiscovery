@@ -90,7 +90,7 @@ namespace EDDiscovery.UserControls
             dataGridViewStarList.MakeDoubleBuffered();
             dataGridViewStarList.RowTemplate.Height = DefaultRowHeight;
             dataGridViewStarList.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            dataGridViewStarList.RowTemplate.Height = 26;
+            dataGridViewStarList.RowTemplate.Height = LogicalToDeviceUnits(26);
             dataGridViewStarList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;     // NEW! appears to work https://msdn.microsoft.com/en-us/library/74b2wakt(v=vs.110).aspx
 
             dataGridViewStarList.Columns[2].ValueType = typeof(Int32);            

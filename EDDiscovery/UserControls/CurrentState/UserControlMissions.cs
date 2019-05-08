@@ -50,12 +50,12 @@ namespace EDDiscovery.UserControls
         public override void Init()
         {
             dataGridViewCurrent.MakeDoubleBuffered();
-            dataGridViewCurrent.RowTemplate.Height = 26;
+            dataGridViewCurrent.RowTemplate.Height = LogicalToDeviceUnits(26);
             dataGridViewCurrent.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dataGridViewCurrent.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;     // NEW! appears to work https://msdn.microsoft.com/en-us/library/74b2wakt(v=vs.110).aspx
 
             dataGridViewPrevious.MakeDoubleBuffered();
-            dataGridViewPrevious.RowTemplate.Height = 26;
+            dataGridViewPrevious.RowTemplate.Height = LogicalToDeviceUnits(26);
             dataGridViewPrevious.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dataGridViewPrevious.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;     // NEW! appears to work https://msdn.microsoft.com/en-us/library/74b2wakt(v=vs.110).aspx
 
