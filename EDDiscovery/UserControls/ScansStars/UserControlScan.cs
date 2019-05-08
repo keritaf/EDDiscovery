@@ -48,7 +48,6 @@ namespace EDDiscovery.UserControls
         public UserControlScan()
         {
             InitializeComponent();
-            this.AutoScaleMode = AutoScaleMode.None;            // we are dealing with graphics.. lets turn off dialog scaling.
             toolTip.ShowAlways = true;
         }
 
@@ -204,12 +203,24 @@ namespace EDDiscovery.UserControls
             if ( extCheckBoxStar.Checked == true )
             {
                 ExtendedControls.ConfigurableForm f = new ExtendedControls.ConfigurableForm();
-                int width = 700;
-                f.Add(new ExtendedControls.ConfigurableForm.Entry("L", typeof(Label), "System:".Tx(this), new Point(10, 40), new Size(160, 24), null));
-                f.Add(new ExtendedControls.ConfigurableForm.Entry("Sys", typeof(ExtendedControls.ExtTextBoxAutoComplete), "", new Point(180, 40), new Size(width - 180 - 20, 24), null));
+                int logicalWidth = 700;
+                f.Add(new ExtendedControls.ConfigurableForm.Entry("L", typeof(Label), "System:".Tx(this),
+                    new Point(LogicalToDeviceUnits(10), LogicalToDeviceUnits(40)),
+                    new Size(LogicalToDeviceUnits(160), LogicalToDeviceUnits(24)),
+                    null));
+                f.Add(new ExtendedControls.ConfigurableForm.Entry("Sys", typeof(ExtendedControls.ExtTextBoxAutoComplete), "",
+                    new Point(LogicalToDeviceUnits(180), LogicalToDeviceUnits(40)),
+                    new Size(LogicalToDeviceUnits(logicalWidth - 180 - 20), LogicalToDeviceUnits(24)),
+                    null));
 
-                f.Add(new ExtendedControls.ConfigurableForm.Entry("OK", typeof(ExtendedControls.ExtButton), "OK".Tx(), new Point(width - 20 - 80, 80), new Size(80, 24), ""));
-                f.Add(new ExtendedControls.ConfigurableForm.Entry("Cancel", typeof(ExtendedControls.ExtButton), "Cancel".Tx(), new Point(width - 200, 80), new Size(80, 24), ""));
+                f.Add(new ExtendedControls.ConfigurableForm.Entry("OK", typeof(ExtendedControls.ExtButton), "OK".Tx(),
+                    new Point(LogicalToDeviceUnits(logicalWidth - 20 - 80), LogicalToDeviceUnits(80)),
+                    new Size(LogicalToDeviceUnits(80), LogicalToDeviceUnits(24)),
+                    ""));
+                f.Add(new ExtendedControls.ConfigurableForm.Entry("Cancel", typeof(ExtendedControls.ExtButton), "Cancel".Tx(),
+                    new Point(LogicalToDeviceUnits(logicalWidth - 200), LogicalToDeviceUnits(80)),
+                    new Size(LogicalToDeviceUnits(80), LogicalToDeviceUnits(24)),
+                    ""));
 
                 f.Trigger += (dialogname, controlname, tag) =>
                 {
@@ -220,7 +231,9 @@ namespace EDDiscovery.UserControls
                     }
                 };
 
-                f.Init(this.FindForm().Icon, new Size(width, 120), new Point(-999, -999), "Show System".Tx(this, "EnterSys"), null, null);
+                f.Init(this.FindForm().Icon,
+                    new Size(LogicalToDeviceUnits(logicalWidth), LogicalToDeviceUnits(120)),
+                    new Point(-999, -999), "Show System".Tx(this, "EnterSys"), null, null);
                 f.GetControl<ExtendedControls.ExtTextBoxAutoComplete>("Sys").SetAutoCompletor(SystemCache.ReturnSystemAutoCompleteList, true);
                 DialogResult res = f.ShowDialog(this.FindForm());
 
@@ -332,15 +345,19 @@ namespace EDDiscovery.UserControls
         private void extButtonHighValue_Click(object sender, EventArgs e)
         {
             ExtendedControls.ConfigurableForm cf = new ConfigurableForm();
-            int width = 300;
-            int height = 100;
+            int logicalWidth = 300;
+            int logicalHeight = 100;
 
             cf.Add(new ExtendedControls.ConfigurableForm.Entry("UC", typeof(ExtendedControls.NumberBoxLong), panelStars.ValueLimit.ToStringInvariant(),
-                                        new Point(5, 30), new Size(width - 5 - 20, 24), null)
+                                        new Point(LogicalToDeviceUnits(5), LogicalToDeviceUnits(30)),
+                                        new Size(LogicalToDeviceUnits(logicalWidth - 5 - 20), LogicalToDeviceUnits(24)),
+                                        null)
             { numberboxlongminimum = 1, numberboxlongmaximum = 2000000000 });
 
             cf.Add(new ExtendedControls.ConfigurableForm.Entry("OK", typeof(ExtendedControls.ExtButton), "OK".Tx(),
-                        new Point(width - 20 - 80, height - 40), new Size(80, 24), ""));
+                        new Point(LogicalToDeviceUnits(logicalWidth - 20 - 80), LogicalToDeviceUnits(logicalHeight - 40)),
+                        new Size(LogicalToDeviceUnits(80), LogicalToDeviceUnits(24)),
+                        ""));
 
             cf.Trigger += (dialogname, controlname, tag) =>
             {
@@ -357,7 +374,9 @@ namespace EDDiscovery.UserControls
                 }
             };
 
-            if (cf.ShowDialog(this.FindForm(), this.FindForm().Icon, new Size(width, height), new Point(-999, -999), "Set Valuable Minimum".Tx(this, "VLMT")) == DialogResult.OK)
+            if (cf.ShowDialog(this.FindForm(), this.FindForm().Icon,
+                    new Size(LogicalToDeviceUnits(logicalWidth), LogicalToDeviceUnits(logicalHeight)),
+                    new Point(-999, -999), "Set Valuable Minimum".Tx(this, "VLMT")) == DialogResult.OK)
             {
                 long? value = cf.GetLong("UC");
                 panelStars.ValueLimit = (int)value.Value;
@@ -383,10 +402,11 @@ namespace EDDiscovery.UserControls
 
             string[] textlist = new string[] { "128", "96", "64", "48", "32", "16" };
 
-            dropdown.ItemHeight = imagelist[0].Size.Height + 2;
+            dropdown.ItemHeight = LogicalToDeviceUnits(imagelist[0].Size.Height + 2);
             dropdown.Items = textlist.ToList();
             dropdown.ImageItems = imagelist.ToList();
             dropdown.FlatStyle = FlatStyle.Popup;
+            dropdown.FitImagesToItemHeight = true;
             dropdown.Activated += (s, ea) =>
             {
                 Point location = buttonSize.PointToScreen(new Point(0, 0));
@@ -400,7 +420,7 @@ namespace EDDiscovery.UserControls
                 DrawSystem();
             };
 
-            dropdown.Size = new Size(64, dropdown.ItemHeight * textlist.Length + 8);
+            dropdown.Size = new Size(LogicalToDeviceUnits(64), dropdown.ItemHeight * textlist.Length + LogicalToDeviceUnits(8));
 
             EDDTheme.Instance.ApplyToControls(dropdown);
 

@@ -93,9 +93,11 @@ namespace EDDiscovery.UserControls
                 if ( opttext != null )
                 {
                     ExtPictureBox.ImageElement lab = new ExtPictureBox.ImageElement();
-                    lab.TextAutosize(curpos, new Size(500, 30), opttext, largerfont, EDDTheme.Instance.LabelColor, this.BackColor);
+                    lab.TextAutosize(curpos,
+                        new Size(LogicalToDeviceUnits(500), LogicalToDeviceUnits(30)),
+                        opttext, largerfont, EDDTheme.Instance.LabelColor, this.BackColor);
                     imagebox.Add(lab);
-                    curpos.Y += lab.img.Height + 8;
+                    curpos.Y += lab.img.Height + LogicalToDeviceUnits(8);
                 }
 
                 DisplayAreaUsed = curpos;
@@ -393,7 +395,7 @@ namespace EDDiscovery.UserControls
 
                     if (sc.HasMaterials && ShowMaterials)
                     {
-                        Point matpos = new Point(endpoint.X + 4, curpos.Y);
+                        Point matpos = new Point(endpoint.X + LogicalToDeviceUnits(4), curpos.Y);
                         Point endmat = CreateMaterialNodes(pc, sc, curmats, hl, matpos, materialsize);
                         endpoint = new Point(Math.Max(endpoint.X, endmat.X), Math.Max(endpoint.Y, endmat.Y)); // record new right point..
                     }
@@ -536,7 +538,7 @@ namespace EDDiscovery.UserControls
                 Point labposcenthorz = new Point(postopright.X + size.Width / 2, postopright.Y + size.Height + labelhoff);
 
                 ExtPictureBox.ImageElement lab = new ExtPictureBox.ImageElement();
-                Size maxsize = new Size(300, 30);
+                Size maxsize = new Size(LogicalToDeviceUnits(300), LogicalToDeviceUnits(30));
 
                 //System.Diagnostics.Debug.WriteLine("Write Label " + label + " " + EDDTheme.Instance.LabelColor + " " + this.BackColor);
 
@@ -568,23 +570,23 @@ namespace EDDiscovery.UserControls
 
         public void SetSize(int stars)
         {
-            StarSize = new Size(stars, stars);
+            StarSize = new Size(LogicalToDeviceUnits(stars), LogicalToDeviceUnits(stars));
             beltsize = new Size(StarSize.Width * 1 / 2, StarSize.Height);
             planetsize = new Size(StarSize.Width * 3 / 4, StarSize.Height * 3 / 4);
             moonsize = new Size(StarSize.Width * 2 / 4, StarSize.Height * 2 / 4);
-            int matsize = stars >= 64 ? 24 : 16;
+            int matsize = LogicalToDeviceUnits(stars >= 64 ? 24 : 16);
             materialsize = new Size(matsize, matsize);
 
-            beltspacerx = Math.Min(stars / 2, 16);
-            starfirstplanetspacerx = Math.Min(stars / 2, 16);      // 16/2=8 to 16
-            starplanetgroupspacery = Math.Min(stars / 2, 24);      // 16/2=8 to 24
-            planetspacerx = Math.Min(stars / 4, 16);       
-            planetspacery = Math.Min(stars / 4, 16);
-            moonspacerx = Math.Min(stars / 4, 8);
-            moonspacery = Math.Min(stars / 4, 8);
-            topmargin = 10;
+            beltspacerx = LogicalToDeviceUnits(Math.Min(stars / 2, 16));
+            starfirstplanetspacerx = LogicalToDeviceUnits(Math.Min(stars / 2, 16));      // 16/2=8 to 16
+            starplanetgroupspacery = LogicalToDeviceUnits(Math.Min(stars / 2, 24));      // 16/2=8 to 24
+            planetspacerx = LogicalToDeviceUnits(Math.Min(stars / 4, 16));       
+            planetspacery = LogicalToDeviceUnits(Math.Min(stars / 4, 16));
+            moonspacerx = LogicalToDeviceUnits(Math.Min(stars / 4, 8));
+            moonspacery = LogicalToDeviceUnits(Math.Min(stars / 4, 8));
+            topmargin = LogicalToDeviceUnits(10);
             leftmargin = 0;
-            materiallinespacerxy = 4;
+            materiallinespacerxy = LogicalToDeviceUnits(4);
         }
 
         #endregion
@@ -618,11 +620,14 @@ namespace EDDiscovery.UserControls
             if (rtbNodeInfo.Visible)
             {
                 if (rtbNodeInfo.Tag != null && ((bool)rtbNodeInfo.Tag) == true)
-                    rtbNodeInfo.Location = new Point(panelStars.Width / 2 + panelStars.Width / 16, 10);
+                    rtbNodeInfo.Location = new Point(panelStars.Width / 2 + panelStars.Width / 16, LogicalToDeviceUnits(10));
                 else
-                    rtbNodeInfo.Location = new Point(panelStars.Width / 16, 10);
+                    rtbNodeInfo.Location = new Point(panelStars.Width / 16, LogicalToDeviceUnits(10));
 
-                int h = Math.Min(rtbNodeInfo.EstimateVerticalSizeFromText(), panelStars.Height - 20);
+                int h = Math.Min(
+                    LogicalToDeviceUnits(rtbNodeInfo.EstimateVerticalSizeFromText()),
+                    panelStars.Height - LogicalToDeviceUnits(20)
+                );
 
                 rtbNodeInfo.Size = new Size(panelStars.Width * 7 / 16, h);
                 rtbNodeInfo.PerformLayout();    // not sure why i need this..
