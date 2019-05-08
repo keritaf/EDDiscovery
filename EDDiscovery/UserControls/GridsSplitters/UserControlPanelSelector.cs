@@ -33,9 +33,8 @@ namespace EDDiscovery.UserControls
         const int vstart = 10;
         const int hspacing = 160;
         const int vspacing = 170;
-        Size panelsize = new Size(hspacing - 20, vspacing - 20);
 
-        private int HorzNumber { get { return Math.Max(1,ClientRectangle.Width / hspacing); } }
+        private int HorzNumber { get { return Math.Max(1,ClientRectangle.Width / LogicalToDeviceUnits(hspacing)); } }
         private int curhorz = 0;
 
         public UserControlPanelSelector()
@@ -67,6 +66,7 @@ namespace EDDiscovery.UserControls
             Bitmap backimage = new Bitmap(EDDiscovery.Icons.Controls.Selector_Background);
             Color centre = backimage.GetPixel(48, 48);
 
+            Size panelsize = new Size(LogicalToDeviceUnits(hspacing - 20), LogicalToDeviceUnits(vspacing - 20));
 
             {
                 Versions.VersioningManager mgr = new Versions.VersioningManager();
@@ -77,16 +77,16 @@ namespace EDDiscovery.UserControls
                 CompositeButton cb = new CompositeButton();
                 cb.Size = panelsize;
                 cb.Tag = 999;
-                cb.Padding = new Padding(10);
+                cb.Padding = new Padding(LogicalToDeviceUnits(10));
                 cb.QuickInit(EDDiscovery.Icons.Controls.Selector_Background,
                             (i==0) ? "NO ADD ONS!".Tx(this) : i.ToString() + " Add Ons".Tx(this),
                             EDDTheme.Instance.GetFontAtSize(11),
                             (i==0) ? Color.Red : (EDDTheme.Instance.TextBlockColor.GetBrightness() < 0.1 ? Color.AntiqueWhite : EDDTheme.Instance.TextBlockColor),
                             centre,
                             EDDiscovery.Icons.Controls.Main_Addons_ManageAddOns,
-                            new Size(48, 48),
+                            new Size(LogicalToDeviceUnits(48), LogicalToDeviceUnits(48)),
                             new Image[] { EDDiscovery.Icons.Controls.Main_Addons_ManageAddOns },
-                            new Size(48, 48),
+                            new Size(LogicalToDeviceUnits(48), LogicalToDeviceUnits(48)),
                             ButtonPress);
 
                 toolTip.SetToolTip(cb.Buttons[0], "Click to add or remove Add Ons".Tx(this,"TTA"));
@@ -105,16 +105,16 @@ namespace EDDiscovery.UserControls
                 CompositeButton cb = new CompositeButton();
                 cb.Size = panelsize;
                 cb.Tag = pi.PopoutID;
-                cb.Padding = new Padding(10);
+                cb.Padding = new Padding(LogicalToDeviceUnits(10));
                 cb.QuickInit(EDDiscovery.Icons.Controls.Selector_Background,
                             pi.WindowTitle,
                             EDDTheme.Instance.GetFontAtSize(11),
                             EDDTheme.Instance.TextBlockColor.GetBrightness() < 0.1 ? Color.AntiqueWhite : EDDTheme.Instance.TextBlockColor,
                             centre,
                             pi.TabIcon,
-                            new Size(48, 48),
+                            new Size(LogicalToDeviceUnits(48), LogicalToDeviceUnits(48)),
                             new Image[] { EDDiscovery.Icons.Controls.TabStrip_Popout, EDDiscovery.Icons.Controls.Selector_AddTab },
-                            new Size(48, 48),
+                            new Size(LogicalToDeviceUnits(48), LogicalToDeviceUnits(48)),
                             ButtonPress);
                 toolTip.SetToolTip(cb.Buttons[0], "Pop out in a new window".Tx(this,"PP1"));
                 toolTip.SetToolTip(cb.Buttons[1], "Open as a new menu tab".Tx(this, "MT1"));
@@ -144,7 +144,10 @@ namespace EDDiscovery.UserControls
             {
                 if (c is CompositeButton)
                 {
-                    c.Location = new Point(hstart + hspacing * (i % curhorz), vstart + vspacing * (i / curhorz));
+                    c.Location = new Point(
+                        LogicalToDeviceUnits(hstart + hspacing * (i % curhorz)),
+                        LogicalToDeviceUnits(vstart + vspacing * (i / curhorz))
+                    );
                     i++;
                 }
 
