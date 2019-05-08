@@ -73,7 +73,7 @@ namespace EDDiscovery.UserControls
             public const int HistoryTag = Description;      // where the tags are used
         }
 
-        private const int DefaultRowHeight = 26;
+        private int DefaultRowHeight() => LogicalToDeviceUnits(26);
 
         private string DbFilterSave { get { return DBName("TravelHistoryControlEventFilter2" ); } }
         private string DbColumnSave { get { return DBName("TravelControl" ,  "DGVCol"); } }
@@ -115,7 +115,7 @@ namespace EDDiscovery.UserControls
             checkBoxCursorToTop.Checked = SQLiteConnectionUser.GetSettingBool(DbAutoTop, true);
 
             dataGridViewTravel.MakeDoubleBuffered();
-            dataGridViewTravel.RowTemplate.Height = DefaultRowHeight;
+            dataGridViewTravel.RowTemplate.Height = DefaultRowHeight();
 
             string filter = SQLiteDBClass.GetSettingString(DbFieldFilter, "");
             if (filter.Length > 0)
@@ -663,13 +663,14 @@ namespace EDDiscovery.UserControls
                     noicons++;
             }
 
-            int padding = 4;
-            int size = 24;
+            int padding = grid.LogicalToDeviceUnits(4);
+            int halfPadding = grid.LogicalToDeviceUnits(2);
+            int size = grid.LogicalToDeviceUnits(24);
 
-            if (size * noicons > (colwidth - 2))
-                size = (colwidth - 2) / noicons;
+            if (size * noicons > (colwidth - halfPadding))
+                size = (colwidth - halfPadding) / noicons;
 
-            int hstart = (hpos + colwidth / 2) - size / 2 * noicons - padding / 2 * (noicons - 1);
+            int hstart = (hpos + colwidth / 2) - size / 2 * noicons - halfPadding * (noicons - 1);
 
             int top = (e.RowBounds.Top + e.RowBounds.Bottom) / 2 - size / 2;
 
@@ -684,7 +685,7 @@ namespace EDDiscovery.UserControls
 
                 using (Brush b = new SolidBrush(c))
                 {
-                    e.Graphics.FillEllipse(b, new Rectangle(hstart + 2, top + 2, size - 6, size - 6));
+                    e.Graphics.FillEllipse(b, new Rectangle(hstart + halfPadding, top + halfPadding, size - halfPadding - padding, size - halfPadding - padding));
                 }
 
                 hstart += size + padding;
@@ -765,34 +766,36 @@ namespace EDDiscovery.UserControls
                     ExtendedControls.InfoForm info = new ExtendedControls.InfoForm();
                     info.Info((EDDiscoveryForm.EDDConfig.DisplayUTC ? leftclicksystem.EventTimeUTC : leftclicksystem.EventTimeLocal) + ": " + leftclicksystem.EventSummary,
                         FindForm().Icon, infodetailed);
-                    info.Size = new Size(1200, 800);
+                    info.Size = new Size(LogicalToDeviceUnits(1200), LogicalToDeviceUnits(800));
                     info.Show(FindForm());
                 }
                 else
                 {
                     int ch = dataGridViewTravel.Rows[leftclickrow].Height;
-                    bool toexpand = (ch <= DefaultRowHeight);
+                    bool toexpand = (ch <= DefaultRowHeight());
 
                     string infotext = (toexpand) ? infodetailed : EventDescription;
 
-                    int h = DefaultRowHeight;
+                    int h = DefaultRowHeight();
 
                     if (toexpand)
                     {
+                        var padding = LogicalToDeviceUnits(4);
+                        var halfPadding = LogicalToDeviceUnits(2);
                         using (Graphics g = Parent.CreateGraphics())
                         {
-                            int desch = (int)(g.MeasureString((string)dataGridViewTravel.Rows[leftclickrow].Cells[TravelHistoryColumns.Description].Value, dataGridViewTravel.Font, dataGridViewTravel.Columns[TravelHistoryColumns.Description].Width - 4).Height + 2);
-                            int infoh = (int)(g.MeasureString(infotext, dataGridViewTravel.Font, dataGridViewTravel.Columns[TravelHistoryColumns.Information].Width - 4).Height + 2);
-                            int noteh = (int)(g.MeasureString((string)dataGridViewTravel.Rows[leftclickrow].Cells[TravelHistoryColumns.Note].Value, dataGridViewTravel.Font, dataGridViewTravel.Columns[TravelHistoryColumns.Note].Width - 4).Height + 2);
+                            int desch = (int)(g.MeasureString((string)dataGridViewTravel.Rows[leftclickrow].Cells[TravelHistoryColumns.Description].Value, dataGridViewTravel.Font, dataGridViewTravel.Columns[TravelHistoryColumns.Description].Width - padding).Height + halfPadding);
+                            int infoh = (int)(g.MeasureString(infotext, dataGridViewTravel.Font, dataGridViewTravel.Columns[TravelHistoryColumns.Information].Width - padding).Height + halfPadding);
+                            int noteh = (int)(g.MeasureString((string)dataGridViewTravel.Rows[leftclickrow].Cells[TravelHistoryColumns.Note].Value, dataGridViewTravel.Font, dataGridViewTravel.Columns[TravelHistoryColumns.Note].Width - padding).Height + halfPadding);
 
                             h = Math.Max(desch, h);
                             h = Math.Max(infoh, h);
                             h = Math.Max(noteh, h);
-                            h += 20;
+                            h += LogicalToDeviceUnits(20);
                         }
                     }
 
-                    toexpand = (h > DefaultRowHeight);      // now we have our h, is it bigger? If so, we need to go into wrap mode
+                    toexpand = (h > DefaultRowHeight());      // now we have our h, is it bigger? If so, we need to go into wrap mode
 
                     dataGridViewTravel.Rows[leftclickrow].Height = h;
                     dataGridViewTravel.Rows[leftclickrow].Cells[TravelHistoryColumns.Information].Value = infotext;

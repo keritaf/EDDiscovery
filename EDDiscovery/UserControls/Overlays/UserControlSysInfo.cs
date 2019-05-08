@@ -556,8 +556,9 @@ namespace EDDiscovery.UserControls
                     c.Visible = false;
             }
 
-            int textboxh = EDDTheme.Instance.FontSize > 10 ? 24 : 20;
-            int vspacing = textboxh+4;
+            int textboxh = LogicalToDeviceUnits(EDDTheme.Instance.FontSize > 10 ? 24 : 20);
+            int spacer = LogicalToDeviceUnits(4);
+            int vspacing = textboxh+spacer;
 
             //System.Diagnostics.Debug.WriteLine("Selection is " + sel);
 
@@ -566,7 +567,7 @@ namespace EDDiscovery.UserControls
             toolStripSkinny.Checked = (Selection & (1 << BitSelSkinny)) != 0;
 
             int data1offset = textBoxCredits.Left - labelCredits.Left;      // offset between first item to initial label - basing it on actual pos allow the auto font scale to work
-            int lab2offset = textBoxCredits.Right + 4 - labelCredits.Left;  // offset between second label and initial label
+            int lab2offset = textBoxCredits.Right + spacer - labelCredits.Left;  // offset between second label and initial label
             int data2offset = lab2offset + data1offset;                     // offset between data 2 pos and initial label
             int coloffset = lab2offset;                                     // offset between each column
 
@@ -630,7 +631,7 @@ namespace EDDiscovery.UserControls
                                         buttonRoss.Location = new Point(buttonEDDB.Right + hspacing, buttonEDSM.Top);
                                         labelOpen.Tag = buttonEDSM.Tag = buttonEDDB.Tag = buttonRoss.Tag = si;
                                         labelOpen.Visible = buttonEDSM.Visible = buttonEDDB.Visible = buttonRoss.Visible = true;
-                                        labpos.Y += vspacing + 4;
+                                        labpos.Y += vspacing + spacer;
                                     }
                                     break;
 
@@ -652,7 +653,7 @@ namespace EDDiscovery.UserControls
                                     break;
 
                                 case BitSelSystemState:
-                                    this.SetPos(ref labpos, labelState, datapos, textBoxState, vspacing - 4, si);
+                                    this.SetPos(ref labpos, labelState, datapos, textBoxState, vspacing - spacer, si);
                                     OffsetPos(labpos2, labelAllegiance, datapos2, textBoxAllegiance, si);
                                     datapos.Y = labpos2.Y = datapos2.Y = labpos.Y;
                                     this.SetPos(ref labpos, labelGov, datapos, textBoxGovernment, vspacing, si);
@@ -874,7 +875,7 @@ namespace EDDiscovery.UserControls
                     int fromrow = fromorder / HorzPositions;
                     int fromcol = fromorder % HorzPositions;
 
-                    int col2pos = textBoxCredits.Right + 4 - labelCredits.Left;
+                    int col2pos = textBoxCredits.Right + LogicalToDeviceUnits(4) - labelCredits.Left;
 
                     int movetoy = fromy + e.Y;
                     int torow = BaseUtils.LineStore.FindRow(Lines,movetoy);       // may be -1 if can't find
@@ -988,6 +989,5 @@ namespace EDDiscovery.UserControls
         }
 
         #endregion
-       
     }
 }

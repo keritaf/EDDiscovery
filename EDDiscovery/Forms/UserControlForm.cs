@@ -76,8 +76,8 @@ namespace EDDiscovery.Forms
 
             UserControl = c;
             c.Dock = DockStyle.None;
-            c.Location = new Point(0, 10);
-            c.Size = new Size(200, 200);
+            c.Location = new Point(0, LogicalToDeviceUnits(10));
+            c.Size = new Size(LogicalToDeviceUnits(200), LogicalToDeviceUnits(200));
             this.Controls.Add(c);
             deftransparent = deftransparentp;   // only applied if allowed to be transparent.
             labelnormalcolour = labelnormal;
@@ -244,14 +244,14 @@ namespace EDDiscovery.Forms
             panel_ontop.ImageSelected = TopMost ? ExtendedControls.ExtPanelDrawn.ImageType.OnTop : ExtendedControls.ExtPanelDrawn.ImageType.Floating;
         }
 
-        const int UCPaddingWidth = 3;
+        int UCPaddingWidth() => LogicalToDeviceUnits(3);
 
         private void UserControlForm_Layout(object sender, LayoutEventArgs e)
         {
             if (UserControl != null)
             {
-                UserControl.Location = new Point(3, curwindowsborder ? 2 : panelTop.Location.Y + panelTop.Height);
-                UserControl.Size = new Size(ClientRectangle.Width - UCPaddingWidth*2, ClientRectangle.Height - UserControl.Location.Y - (curwindowsborder ? 0 : statusStripBottom.Height));
+                UserControl.Location = new Point(LogicalToDeviceUnits(3), curwindowsborder ? LogicalToDeviceUnits(2) : panelTop.Location.Y + panelTop.Height);
+                UserControl.Size = new Size(ClientRectangle.Width - UCPaddingWidth() *2, ClientRectangle.Height - UserControl.Location.Y - (curwindowsborder ? 0 : statusStripBottom.Height));
             }
         }
 
@@ -385,15 +385,17 @@ namespace EDDiscovery.Forms
 
         public new void RequestTemporaryResize(Size w)                  // Size w is the Form UserControl area wanted inside the window (26/1/2018)
         {
-            w.Width += UCPaddingWidth * 2 + 2;  //2 is a kludge     We need to add on area used by Form controls..
-            w.Height += 2 + UserControl.Location.Y + statusStripBottom.Height;
+            var padding = LogicalToDeviceUnits(2);
+            w.Width += UCPaddingWidth() * 2 + padding;  //2 is a kludge     We need to add on area used by Form controls..
+            w.Height += padding + UserControl.Location.Y + statusStripBottom.Height;
             base.RequestTemporaryResize(new Size(w.Width, w.Height));        // need to add on control area.
         }
 
         public void RequestTemporaryMinimiumSize(Size w)            // again, in terms of UserControl area. (26/1/2018)
         {
-            w.Width += UCPaddingWidth * 2 + 2;  //2 is a kludge
-            w.Height += 2;
+            var padding = LogicalToDeviceUnits(2);
+            w.Width += UCPaddingWidth() * 2 + padding;  //2 is a kludge
+            w.Height += padding;
             w.Height += UserControl.Location.Y + statusStripBottom.Height;      // add on height for form controls
 
             if (ClientRectangle.Height < w.Height || ClientRectangle.Width < w.Width)
