@@ -1,9 +1,9 @@
 [submodule "ExtendedControls"]
 	path = ExtendedControls
-	url = https://github.com/EDDiscovery/ExtendedControls.git
+	url = https://github.com/keritaf/ExtendedControls.git
 [submodule "BaseUtilities"]
 	path = BaseUtilities
 	url = https://github.com/EDDiscovery/BaseUtilities.git
 [submodule "ActionLanguage"]
 	path = ActionLanguage
-	url = https://github.com/EDDiscovery/ActionLanguage.git
+	url = https://github.com/keritaf/ActionLanguage.git
