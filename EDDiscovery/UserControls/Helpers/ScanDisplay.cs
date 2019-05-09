@@ -511,6 +511,7 @@ namespace EDDiscovery.UserControls
             colormap.NewColor = matcolour;
 
             Bitmap mat = BaseUtils.BitMapHelpers.ReplaceColourInBitmap((Bitmap)Icons.Controls.Scan_Bodies_Material, new System.Drawing.Imaging.ColorMap[] { colormap });
+            ScaleBitmapLogicalToDevice(ref mat);
 
             BaseUtils.BitMapHelpers.DrawTextCentreIntoBitmap(ref mat, text, stdfont, textcolour);
 
