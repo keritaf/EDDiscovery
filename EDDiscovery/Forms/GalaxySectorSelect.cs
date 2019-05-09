@@ -230,13 +230,20 @@ namespace EDDiscovery.Forms
 
             int width = 700;
             f.Add(new ExtendedControls.ConfigurableForm.Entry("L", typeof(Label), "ED Discovery downloads star data from EDSM/EDDB which is used to give you additional data.  Select how much data you want to store.  The more of the galaxy you select, the bigger the storage needed".Tx(t,"GALSELEX"), 
-                            new Point(10, 30), new Size(width-50, 70), ""));
-            f.Add(new ExtendedControls.ConfigurableForm.Entry("L", typeof(Label), "Select:".Tx(t), new Point(10, 100), new Size(160, 24), ""));
+                            new Point(parent.LogicalToDeviceUnits(10), parent.LogicalToDeviceUnits(30)),
+                            new Size(parent.LogicalToDeviceUnits(width-50), parent.LogicalToDeviceUnits(70)), ""));
+            f.Add(new ExtendedControls.ConfigurableForm.Entry("L", typeof(Label), "Select:".Tx(t),
+                new Point(parent.LogicalToDeviceUnits(10), parent.LogicalToDeviceUnits(100)),
+                new Size(parent.LogicalToDeviceUnits(160), parent.LogicalToDeviceUnits(24)), ""));
             f.Add(new ExtendedControls.ConfigurableForm.Entry("Entry", "All",
-                        new Point(180, 100), new Size(width-180-100, 24),
+                        new Point(parent.LogicalToDeviceUnits(180), parent.LogicalToDeviceUnits(100)),
+                        new Size(parent.LogicalToDeviceUnits(width -180-100), parent.LogicalToDeviceUnits(24)),
                         "Select the data set".Tx(t, "GALSELEN"), list));
 
-            f.Add(new ExtendedControls.ConfigurableForm.Entry("OK", typeof(ExtendedControls.ExtButton), "OK".Tx(), new Point(width-40-80, 150), new Size(80, 24), "Press to Accept".Tx(t)));
+            f.Add(new ExtendedControls.ConfigurableForm.Entry("OK", typeof(ExtendedControls.ExtButton), "OK".Tx(),
+                new Point(parent.LogicalToDeviceUnits(width -40-80), parent.LogicalToDeviceUnits(150)),
+                new Size(parent.LogicalToDeviceUnits(80), parent.LogicalToDeviceUnits(24)),
+                "Press to Accept".Tx(t)));
 
             //f.Add(new ExtendedControls.ConfigurableForm.Entry("Cancel", typeof(ExtendedControls.ButtonExt), "Cancel".Tx(), new Point(width - 200, 70), new Size(80, 24), "Press to Cancel".Tx(t)));
 
@@ -249,7 +256,9 @@ namespace EDDiscovery.Forms
                 }
             };
             
-            DialogResult res = f.ShowDialog(parent, parent.Icon, new Size(width, 200), new Point(-999, -999), "Select EDSM Galaxy Data".Tx(t, "GALSELTitle"));
+            DialogResult res = f.ShowDialog(parent, parent.Icon,
+                new Size(parent.LogicalToDeviceUnits(width), parent.LogicalToDeviceUnits(200)),
+                new Point(-999, -999), "Select EDSM Galaxy Data".Tx(t, "GALSELTitle"));
 
             string sel = f.Get("Entry");
             int index = DefaultGalaxyOptions.FindIndex((x) => { return x.Item1 == sel; });
@@ -380,9 +389,9 @@ namespace EDDiscovery.Forms
                 xly = (int)(lypostop.X + fractx * lywidth);
                 zly = (int)(lypostop.Y - fracty * lyheight);
 
-                int id = GridId.Id(xly, zly);
+                int id = GridId.Id((float)xly, (float)zly);
 
-               // System.Diagnostics.Debug.WriteLine("ID {0} {1} {2}" ,id, xly, zly);
+                System.Diagnostics.Debug.WriteLine("ID {0} {1} {2}" ,id, xly, zly);
 
                 return id;
             }

@@ -320,7 +320,7 @@ namespace EDDiscovery.UserControls
         {
             popoutdropdown = new ExtendedControls.ExtListBoxForm("", true);
 
-            popoutdropdown.ItemHeight = 26;
+            popoutdropdown.ItemHeight = LogicalToDeviceUnits(26);
             popoutdropdown.Items = PanelInformation.GetUserSelectablePanelDescriptions(EDDConfig.Instance.SortPanelsByName).ToList();
             popoutdropdown.ImageItems = PanelInformation.GetUserSelectablePanelImages(EDDConfig.Instance.SortPanelsByName).ToList();
             popoutdropdown.ItemSeperators = PanelInformation.GetUserSelectableSeperatorIndex(EDDConfig.Instance.SortPanelsByName);
@@ -337,8 +337,10 @@ namespace EDDiscovery.UserControls
                 UserControlContainerResizable uccr = CreateInitPanel(PanelInformation.Create(pids[popoutdropdown.SelectedIndex]));
 
                 LoadLayoutPanel(uccr, uccr.control as UserControlCommonBase,
-                                            new Point((uccrlist.Count % 5) * 50, (uccrlist.Count % 5) * 50),
-                                            new Size(Math.Min(300, panelPlayfield.Width - 10), Math.Min(300, panelPlayfield.Height - 10)));
+                    new Point(LogicalToDeviceUnits((uccrlist.Count % 5) * 50),
+                        LogicalToDeviceUnits((uccrlist.Count % 5) * 50)),
+                    new Size(Math.Min(LogicalToDeviceUnits(300), panelPlayfield.Width - LogicalToDeviceUnits(10)),
+                        Math.Min(LogicalToDeviceUnits(300), panelPlayfield.Height - LogicalToDeviceUnits(10))));
 
 
                 Select(null);
@@ -348,7 +350,7 @@ namespace EDDiscovery.UserControls
                 AssignTHC();
             };
 
-            popoutdropdown.Size = new Size(500, 26 * 20);
+            popoutdropdown.Size = new Size(LogicalToDeviceUnits(500), LogicalToDeviceUnits(26 * 20));
             discoveryform.theme.ApplyToControls(popoutdropdown);
             popoutdropdown.SelectionBackColor = discoveryform.theme.ButtonBackColor;
             popoutdropdown.Show(this);

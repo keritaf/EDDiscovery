@@ -258,8 +258,8 @@ namespace EDDiscovery.UserControls
                 if (!drawnnootherstuff)                                         // and it may indicate its overwriting all stuff, which is fine
                 {
                     int rowpos = scanpostextoffset.Y;
-                    int rowheight = Config(Configuration.showIcon) ? 26 : 20;
-					int habrowheight = Config(Configuration.showIcon) ? 26 : 20;
+                    int rowheight = LogicalToDeviceUnits(Config(Configuration.showIcon) ? 26 : 20);
+					int habrowheight = LogicalToDeviceUnits(Config(Configuration.showIcon) ? 26 : 20);
 
 					// Check if need to hide the UI
                     if (Config(Configuration.showNothingWhenDocked) && 
@@ -322,7 +322,7 @@ namespace EDDiscovery.UserControls
 
 							void expandRowHeight()
 							{
-								habrowheight += 20;
+								habrowheight += LogicalToDeviceUnits(20);
 							}
 
                             if ( sn != null && sn.starnodes.Count>0 && sn.starnodes.Values[0].ScanData != null )
@@ -456,8 +456,10 @@ namespace EDDiscovery.UserControls
             if (Config(Configuration.showEDSMButton))
             {
                 Color backtext = (backcolour.IsFullyTransparent()) ? Color.Black : backcolour;
-                ExtendedControls.ExtPictureBox.ImageElement edsm = pictureBox.AddTextFixedSizeC(new Point(scanpostextoffset.X + columnpos[colnum++], rowpos), new Size(45, 14), 
-                                            "EDSM", displayfont, backtext, textcolour, 0.5F, true, he, "View system on EDSM".Tx(this,"TVE"));
+                ExtendedControls.ExtPictureBox.ImageElement edsm = pictureBox.AddTextFixedSizeC(
+                    new Point(scanpostextoffset.X + columnpos[colnum++], rowpos),
+                    new Size(LogicalToDeviceUnits(45), LogicalToDeviceUnits(14)),
+                    "EDSM", displayfont, backtext, textcolour, 0.5F, true, he, "View system on EDSM".Tx(this, "TVE"));
                 edsm.Translate(0, (rowheight - edsm.img.Height) / 2);          // align to centre of rowh..
                 edsm.SetAlternateImage(BaseUtils.BitMapHelpers.DrawTextIntoFixedSizeBitmapC("EDSM", edsm.img.Size, displayfont, backtext, textcolour.Multiply(1.2F), 0.5F, true), edsm.pos, true);
             }
@@ -473,7 +475,10 @@ namespace EDDiscovery.UserControls
                 if ( coldata[i].Equals("`!!ICON!!") )            // marker for ICON..
                 {
                     Image img = he.journalEntry.Icon;
-                    ExtendedControls.ExtPictureBox.ImageElement e = pictureBox.AddImage(new Rectangle(scanpostextoffset.X + columnpos[colnum+i], rowpos, img.Width, img.Height), img, null, null, false);
+                    ExtendedControls.ExtPictureBox.ImageElement e = pictureBox.AddImage(
+                        new Rectangle(scanpostextoffset.X + columnpos[colnum+i], rowpos, 
+                            LogicalToDeviceUnits(img.Width), LogicalToDeviceUnits(img.Height)),
+                        img, null, null, false);
                     e.Translate(0, (rowheight - e.img.Height) / 2);          // align to centre of rowh..
                 }
                 else
@@ -483,7 +488,8 @@ namespace EDDiscovery.UserControls
 
         public bool DrawScanText(bool attop, Color textcolour , Color backcolour)
         {
-            Size maxscansize = new Size(1920, 1080);            // set arbitary large.. not important for this.
+            Size maxscansize = new Size(LogicalToDeviceUnits(1920), LogicalToDeviceUnits(1080));            // set arbitary large.. not important for this.
+            int padding = LogicalToDeviceUnits(4);
 
             if (scantext != null)
             {
@@ -491,19 +497,20 @@ namespace EDDiscovery.UserControls
                 {
                     if (Config(Configuration.showScanLeft))
                     {
-                        ExtPictureBox.ImageElement scanimg = pictureBox.AddTextAutoSize(new Point(4, 0), maxscansize, scantext, displayfont, textcolour, backcolour, 1.0F, "SCAN");
-                        scanpostextoffset = new Point(4 + scanimg.img.Width + 4, 0);
-                        RequestTemporaryMinimumSize(new Size(scanimg.img.Width + 8, scanimg.img.Height + 4));
+                        ExtPictureBox.ImageElement scanimg = pictureBox.AddTextAutoSize(new Point(padding, 0),
+                            maxscansize, scantext, displayfont, textcolour, backcolour, 1.0F, "SCAN");
+                        scanpostextoffset = new Point(padding + scanimg.img.Width + padding, 0);
+                        RequestTemporaryMinimumSize(new Size(scanimg.img.Width + padding * 2, scanimg.img.Height + padding));
                     }
                     else if (Config(Configuration.showScanAbove))
                     {
-                        ExtPictureBox.ImageElement scanimg = pictureBox.AddTextAutoSize(new Point(4, 0), maxscansize, scantext, displayfont, textcolour, backcolour, 1.0F, "SCAN");
-                        scanpostextoffset = new Point(0, scanimg.img.Height + 4);
-                        RequestTemporaryResizeExpand(new Size(0, scanimg.img.Height + 4));
+                        ExtPictureBox.ImageElement scanimg = pictureBox.AddTextAutoSize(new Point(padding, 0), maxscansize, scantext, displayfont, textcolour, backcolour, 1.0F, "SCAN");
+                        scanpostextoffset = new Point(0, scanimg.img.Height + padding);
+                        RequestTemporaryResizeExpand(new Size(0, scanimg.img.Height + padding));
                     }
                     else if (Config(Configuration.showScanOnTop))
                     {
-                        ExtPictureBox.ImageElement scanimg = pictureBox.AddTextAutoSize(new Point(4, 0), maxscansize, scantext, displayfont, textcolour, backcolour, 1.0F, "SCAN");
+                        ExtPictureBox.ImageElement scanimg = pictureBox.AddTextAutoSize(new Point(padding, 0), maxscansize, scantext, displayfont, textcolour, backcolour, 1.0F, "SCAN");
 #if false
 
                         using (Graphics gr = Graphics.FromImage(scanimg.img))
@@ -515,7 +522,7 @@ namespace EDDiscovery.UserControls
                             }
                         }
 #endif
-                        RequestTemporaryResize(new Size(scanimg.img.Width + 8, scanimg.img.Height + 4 ));        // match exactly to use minimum space
+                        RequestTemporaryResize(new Size(scanimg.img.Width + padding * 2, scanimg.img.Height + padding));        // match exactly to use minimum space
                         return true;
                     }
                 }
@@ -524,14 +531,14 @@ namespace EDDiscovery.UserControls
                     if (Config(Configuration.showScanRight))
                     {
                         Size s = pictureBox.DisplaySize();
-                        ExtPictureBox.ImageElement scanimg = pictureBox.AddTextAutoSize(new Point(s.Width + 4, 0), maxscansize, scantext, displayfont, textcolour, backcolour, 1.0F, "SCAN");
-                        RequestTemporaryMinimumSize(new Size(s.Width+4+scanimg.img.Width + 8, scanimg.img.Height + 4));
+                        ExtPictureBox.ImageElement scanimg = pictureBox.AddTextAutoSize(new Point(s.Width + padding, 0), maxscansize, scantext, displayfont, textcolour, backcolour, 1.0F, "SCAN");
+                        RequestTemporaryMinimumSize(new Size(s.Width+ padding + scanimg.img.Width + padding*2, scanimg.img.Height + padding));
                     }
                     else if (Config(Configuration.showScanBelow))
                     {
                         Size s = pictureBox.DisplaySize();
-                        ExtPictureBox.ImageElement scanimg = pictureBox.AddTextAutoSize(new Point(4, s.Height + 4), maxscansize, scantext, displayfont, textcolour, backcolour, 1.0F, "SCAN");
-                        RequestTemporaryResizeExpand(new Size(0, scanimg.img.Height + 4));
+                        ExtPictureBox.ImageElement scanimg = pictureBox.AddTextAutoSize(new Point(padding, s.Height + padding), maxscansize, scantext, displayfont, textcolour, backcolour, 1.0F, "SCAN");
+                        RequestTemporaryResizeExpand(new Size(0, scanimg.img.Height + padding));
                     }
                 }
             }
@@ -543,14 +550,14 @@ namespace EDDiscovery.UserControls
         {
             if (text.Length > 0)            // don't place empty text, do not want image handling to work on blank screen
             {
-                int endpos = (nextcol == 0) ? 1920 : (columnpos[nextcol] - columnpos[coli] - 4);
+                int endpos = (nextcol == 0) ? LogicalToDeviceUnits(1920) : (columnpos[nextcol] - columnpos[coli] - LogicalToDeviceUnits(4));
 
                 int colpos = scanpostextoffset.X + columnpos[coli];
 
                 if ( opt != null )
                 {
-                    pictureBox.AddImage(new Rectangle(colpos, rowpos, 24, 24), Icons.Controls.firstdiscover, null, imagetooltip, false);
-                    colpos += 24;
+                    pictureBox.AddImage(new Rectangle(colpos, rowpos, LogicalToDeviceUnits(24), LogicalToDeviceUnits(24)), Icons.Controls.firstdiscover, null, imagetooltip, false);
+                    colpos += LogicalToDeviceUnits(24);
                 }
 
                 ExtendedControls.ExtPictureBox.ImageElement e =

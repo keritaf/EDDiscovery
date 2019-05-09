@@ -437,16 +437,27 @@ namespace EDDiscovery.UserControls
 
             ExtendedControls.ConfigurableForm f = new ExtendedControls.ConfigurableForm();
 
-            int width = LogicalToDeviceUnits(430);
-            int ctrlleft = LogicalToDeviceUnits(150);
+            int width = 430;
+            int ctrlleft = 150;
 
-            f.Add(new ExtendedControls.ConfigurableForm.Entry("L", typeof(Label), "Fuel Warning:".Tx(this,"FW"), new Point(10, 40), new Size(140, 24), ""));
+            f.Add(new ExtendedControls.ConfigurableForm.Entry("L", typeof(Label), "Fuel Warning:".Tx(this,"FW"),
+                new Point(LogicalToDeviceUnits(10), LogicalToDeviceUnits(40)),
+                new Size(LogicalToDeviceUnits(140), LogicalToDeviceUnits(24)), ""));
             f.Add(new ExtendedControls.ConfigurableForm.Entry("FuelWarning", typeof(ExtendedControls.NumberBoxDouble), 
-                last_si.FuelWarningPercent.ToStringInvariant(), new Point(ctrlleft, LogicalToDeviceUnits(40)), new Size(width - ctrlleft - LogicalToDeviceUnits(20), LogicalToDeviceUnits(24)), "Enter fuel warning level in % (0 = off, 1-100%)".Tx(this,"TTF"))
+                last_si.FuelWarningPercent.ToStringInvariant(),
+                new Point(LogicalToDeviceUnits(ctrlleft), LogicalToDeviceUnits(40)),
+                new Size(LogicalToDeviceUnits(width - ctrlleft - 20), LogicalToDeviceUnits(24)),
+                "Enter fuel warning level in % (0 = off, 1-100%)".Tx(this,"TTF"))
                 { numberboxdoubleminimum = 0, numberboxdoublemaximum = 100, numberboxformat = "0.##" });
 
-            f.Add(new ExtendedControls.ConfigurableForm.Entry("OK", typeof(ExtendedControls.ExtButton), "OK".Tx(), new Point(width - 100, 70), new Size(80, 24), "Press to Accept".Tx(this)));
-            f.Add(new ExtendedControls.ConfigurableForm.Entry("Cancel", typeof(ExtendedControls.ExtButton), "Cancel".Tx(), new Point(width - 200, 70), new Size(80, 24), "Press to Cancel".Tx(this)));
+            f.Add(new ExtendedControls.ConfigurableForm.Entry("OK", typeof(ExtendedControls.ExtButton), "OK".Tx(),
+                new Point(LogicalToDeviceUnits(width - 100), LogicalToDeviceUnits(70)),
+                new Size(LogicalToDeviceUnits(80), LogicalToDeviceUnits(24)),
+                "Press to Accept".Tx(this)));
+            f.Add(new ExtendedControls.ConfigurableForm.Entry("Cancel", typeof(ExtendedControls.ExtButton), "Cancel".Tx(),
+                new Point(LogicalToDeviceUnits(width - 200), LogicalToDeviceUnits(70)),
+                new Size(LogicalToDeviceUnits(80), LogicalToDeviceUnits(24)),
+                "Press to Cancel".Tx(this)));
 
             f.Trigger += (dialogname, controlname, tag) =>
             {
@@ -468,7 +479,9 @@ namespace EDDiscovery.UserControls
                 }
             };
 
-            DialogResult res = f.ShowDialog(this.FindForm(), this.FindForm().Icon, new Size(width, 110), new Point(-999, -999), "Ship Configure".Tx(this,"SC"));
+            DialogResult res = f.ShowDialog(this.FindForm(), this.FindForm().Icon,
+                new Size(LogicalToDeviceUnits(width), LogicalToDeviceUnits(110)),
+                new Point(-999, -999), "Ship Configure".Tx(this,"SC"));
 
             if (res == DialogResult.OK)
             {

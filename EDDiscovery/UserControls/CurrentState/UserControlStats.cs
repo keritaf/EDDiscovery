@@ -262,13 +262,13 @@ namespace EDDiscovery.UserControls
                 int height = 0;
                 foreach (DataGridViewRow row in dataGridViewStats.Rows)
                 {
-                    height += row.Height + 1;
+                    height += row.Height + LogicalToDeviceUnits(1);
                 }
-                height += dataGridViewStats.ColumnHeadersHeight + 2;
-                dataGridViewStats.Size = new Size(Math.Max(10, panelData.DisplayRectangle.Width - panelData.ScrollBarWidth), height);             // all controls should be placed each time.
+                height += dataGridViewStats.ColumnHeadersHeight + LogicalToDeviceUnits(2);
+                dataGridViewStats.Size = new Size(Math.Max(LogicalToDeviceUnits(10), panelData.DisplayRectangle.Width - panelData.ScrollBarWidth), height);             // all controls should be placed each time.
                                                                                                                                                   //System.Diagnostics.Debug.WriteLine("DGV {0} {1}", dataGridViewStats.Size, dataGridViewStats.Location);
                 mostVisited.Location = new Point(0, height);
-                mostVisited.Size = new Size(Math.Max(10, panelData.DisplayRectangle.Width - panelData.ScrollBarWidth), mostVisited.Height);
+                mostVisited.Size = new Size(Math.Max(LogicalToDeviceUnits(10), panelData.DisplayRectangle.Width - panelData.ScrollBarWidth), mostVisited.Height);
             }
             catch (Exception ex)
             {

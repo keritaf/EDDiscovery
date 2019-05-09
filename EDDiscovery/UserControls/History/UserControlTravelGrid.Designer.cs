@@ -44,6 +44,7 @@ namespace EDDiscovery.UserControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlTravelGrid));
             this.TopPanel = new System.Windows.Forms.Panel();
             this.extCheckBoxOutlines = new ExtendedControls.ExtCheckBox();
             this.checkBoxCursorToTop = new ExtendedControls.ExtCheckBox();
@@ -118,8 +119,9 @@ namespace EDDiscovery.UserControls
             this.TopPanel.Controls.Add(this.labelTime);
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(870, 32);
+            this.TopPanel.Size = new System.Drawing.Size(1595, 59);
             this.TopPanel.TabIndex = 27;
             // 
             // extCheckBoxOutlines
@@ -139,10 +141,11 @@ namespace EDDiscovery.UserControls
             this.extCheckBoxOutlines.FontNerfReduction = 0.5F;
             this.extCheckBoxOutlines.Image = global::EDDiscovery.Icons.Controls.TravelGrid_Outlines;
             this.extCheckBoxOutlines.ImageButtonDisabledScaling = 0.5F;
-            this.extCheckBoxOutlines.Location = new System.Drawing.Point(485, 1);
+            this.extCheckBoxOutlines.Location = new System.Drawing.Point(889, 2);
+            this.extCheckBoxOutlines.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.extCheckBoxOutlines.MouseOverColor = System.Drawing.Color.CornflowerBlue;
             this.extCheckBoxOutlines.Name = "extCheckBoxOutlines";
-            this.extCheckBoxOutlines.Size = new System.Drawing.Size(28, 28);
+            this.extCheckBoxOutlines.Size = new System.Drawing.Size(51, 52);
             this.extCheckBoxOutlines.TabIndex = 30;
             this.extCheckBoxOutlines.TickBoxReductionSize = 10;
             this.toolTip.SetToolTip(this.extCheckBoxOutlines, "Control Outlining");
@@ -166,10 +169,11 @@ namespace EDDiscovery.UserControls
             this.checkBoxCursorToTop.FontNerfReduction = 0.5F;
             this.checkBoxCursorToTop.Image = global::EDDiscovery.Icons.Controls.TravelGrid_CursorToTop;
             this.checkBoxCursorToTop.ImageButtonDisabledScaling = 0.5F;
-            this.checkBoxCursorToTop.Location = new System.Drawing.Point(450, 1);
+            this.checkBoxCursorToTop.Location = new System.Drawing.Point(825, 2);
+            this.checkBoxCursorToTop.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.checkBoxCursorToTop.MouseOverColor = System.Drawing.Color.CornflowerBlue;
             this.checkBoxCursorToTop.Name = "checkBoxCursorToTop";
-            this.checkBoxCursorToTop.Size = new System.Drawing.Size(28, 28);
+            this.checkBoxCursorToTop.Size = new System.Drawing.Size(51, 52);
             this.checkBoxCursorToTop.TabIndex = 30;
             this.checkBoxCursorToTop.TickBoxReductionSize = 10;
             this.toolTip.SetToolTip(this.checkBoxCursorToTop, "Automatically move the cursor to the latest entry when it arrives");
@@ -179,9 +183,10 @@ namespace EDDiscovery.UserControls
             // 
             this.buttonExtExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExtExcel.Image = global::EDDiscovery.Icons.Controls.TravelGrid_ExportToExcel;
-            this.buttonExtExcel.Location = new System.Drawing.Point(520, 1);
+            this.buttonExtExcel.Location = new System.Drawing.Point(953, 2);
+            this.buttonExtExcel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.buttonExtExcel.Name = "buttonExtExcel";
-            this.buttonExtExcel.Size = new System.Drawing.Size(28, 28);
+            this.buttonExtExcel.Size = new System.Drawing.Size(51, 52);
             this.buttonExtExcel.TabIndex = 28;
             this.toolTip.SetToolTip(this.buttonExtExcel, "Send data on grid to excel");
             this.buttonExtExcel.UseVisualStyleBackColor = true;
@@ -190,9 +195,10 @@ namespace EDDiscovery.UserControls
             // buttonField
             // 
             this.buttonField.Image = global::EDDiscovery.Icons.Controls.TravelGrid_FieldFilter;
-            this.buttonField.Location = new System.Drawing.Point(415, 1);
+            this.buttonField.Location = new System.Drawing.Point(761, 2);
+            this.buttonField.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.buttonField.Name = "buttonField";
-            this.buttonField.Size = new System.Drawing.Size(28, 28);
+            this.buttonField.Size = new System.Drawing.Size(51, 52);
             this.buttonField.TabIndex = 25;
             this.toolTip.SetToolTip(this.buttonField, "Filter out entries matching the field selection");
             this.buttonField.UseVisualStyleBackColor = true;
@@ -201,9 +207,10 @@ namespace EDDiscovery.UserControls
             // buttonFilter
             // 
             this.buttonFilter.Image = global::EDDiscovery.Icons.Controls.TravelGrid_EventFilter;
-            this.buttonFilter.Location = new System.Drawing.Point(380, 1);
+            this.buttonFilter.Location = new System.Drawing.Point(697, 2);
+            this.buttonFilter.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.buttonFilter.Name = "buttonFilter";
-            this.buttonFilter.Size = new System.Drawing.Size(28, 28);
+            this.buttonFilter.Size = new System.Drawing.Size(51, 52);
             this.buttonFilter.TabIndex = 25;
             this.toolTip.SetToolTip(this.buttonFilter, "Filter out entries based on event type");
             this.buttonFilter.UseVisualStyleBackColor = true;
@@ -219,15 +226,19 @@ namespace EDDiscovery.UserControls
             this.textBoxFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxFilter.ClearOnFirstChar = false;
             this.textBoxFilter.ControlBackground = System.Drawing.SystemColors.Control;
+            this.textBoxFilter.EndButtonEnable = true;
+            this.textBoxFilter.EndButtonImage = ((System.Drawing.Image)(resources.GetObject("textBoxFilter.EndButtonImage")));
+            this.textBoxFilter.EndButtonVisible = false;
             this.textBoxFilter.InErrorCondition = false;
-            this.textBoxFilter.Location = new System.Drawing.Point(217, 6);
+            this.textBoxFilter.Location = new System.Drawing.Point(398, 11);
+            this.textBoxFilter.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textBoxFilter.Multiline = false;
             this.textBoxFilter.Name = "textBoxFilter";
             this.textBoxFilter.ReadOnly = false;
             this.textBoxFilter.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.textBoxFilter.SelectionLength = 0;
             this.textBoxFilter.SelectionStart = 0;
-            this.textBoxFilter.Size = new System.Drawing.Size(148, 20);
+            this.textBoxFilter.Size = new System.Drawing.Size(271, 29);
             this.textBoxFilter.TabIndex = 1;
             this.textBoxFilter.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.toolTip.SetToolTip(this.textBoxFilter, "Enter text to search in any fields for an item");
@@ -237,9 +248,10 @@ namespace EDDiscovery.UserControls
             // labelSearch
             // 
             this.labelSearch.AutoSize = true;
-            this.labelSearch.Location = new System.Drawing.Point(159, 7);
+            this.labelSearch.Location = new System.Drawing.Point(292, 13);
+            this.labelSearch.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelSearch.Name = "labelSearch";
-            this.labelSearch.Size = new System.Drawing.Size(41, 13);
+            this.labelSearch.Size = new System.Drawing.Size(75, 25);
             this.labelSearch.TabIndex = 24;
             this.labelSearch.Text = "Search";
             // 
@@ -256,7 +268,8 @@ namespace EDDiscovery.UserControls
             this.comboBoxHistoryWindow.DropDownWidth = 1;
             this.comboBoxHistoryWindow.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxHistoryWindow.ItemHeight = 13;
-            this.comboBoxHistoryWindow.Location = new System.Drawing.Point(49, 4);
+            this.comboBoxHistoryWindow.Location = new System.Drawing.Point(90, 7);
+            this.comboBoxHistoryWindow.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBoxHistoryWindow.MouseOverBackgroundColor = System.Drawing.Color.Silver;
             this.comboBoxHistoryWindow.Name = "comboBoxHistoryWindow";
             this.comboBoxHistoryWindow.ScrollBarButtonColor = System.Drawing.Color.LightGray;
@@ -265,7 +278,7 @@ namespace EDDiscovery.UserControls
             this.comboBoxHistoryWindow.SelectedIndex = -1;
             this.comboBoxHistoryWindow.SelectedItem = null;
             this.comboBoxHistoryWindow.SelectedValue = null;
-            this.comboBoxHistoryWindow.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxHistoryWindow.Size = new System.Drawing.Size(183, 32);
             this.comboBoxHistoryWindow.TabIndex = 0;
             this.comboBoxHistoryWindow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolTip.SetToolTip(this.comboBoxHistoryWindow, "Select the entries by age");
@@ -275,14 +288,16 @@ namespace EDDiscovery.UserControls
             // labelTime
             // 
             this.labelTime.AutoSize = true;
-            this.labelTime.Location = new System.Drawing.Point(3, 7);
+            this.labelTime.Location = new System.Drawing.Point(6, 13);
+            this.labelTime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(30, 13);
+            this.labelTime.Size = new System.Drawing.Size(56, 25);
             this.labelTime.TabIndex = 0;
             this.labelTime.Text = "Time";
             // 
             // historyContextMenu
             // 
+            this.historyContextMenu.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.historyContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.removeSortingOfColumnsToolStripMenuItem,
             this.gotoEntryNumberToolStripMenuItem,
@@ -306,69 +321,69 @@ namespace EDDiscovery.UserControls
             this.runSelectionThroughInaraSystemToolStripMenuItem,
             this.runEntryThroughProfileSystemToolStripMenuItem});
             this.historyContextMenu.Name = "historyContextMenu";
-            this.historyContextMenu.Size = new System.Drawing.Size(388, 466);
+            this.historyContextMenu.Size = new System.Drawing.Size(637, 718);
             this.historyContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.historyContextMenu_Opening);
             // 
             // removeSortingOfColumnsToolStripMenuItem
             // 
             this.removeSortingOfColumnsToolStripMenuItem.Name = "removeSortingOfColumnsToolStripMenuItem";
-            this.removeSortingOfColumnsToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.removeSortingOfColumnsToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.removeSortingOfColumnsToolStripMenuItem.Text = "Remove Sorting of Columns";
             this.removeSortingOfColumnsToolStripMenuItem.Click += new System.EventHandler(this.removeSortingOfColumnsToolStripMenuItem_Click);
             // 
             // gotoEntryNumberToolStripMenuItem
             // 
             this.gotoEntryNumberToolStripMenuItem.Name = "gotoEntryNumberToolStripMenuItem";
-            this.gotoEntryNumberToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.gotoEntryNumberToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.gotoEntryNumberToolStripMenuItem.Text = "Jump to Entry";
             this.gotoEntryNumberToolStripMenuItem.Click += new System.EventHandler(this.gotoEntryNumberToolStripMenuItem_Click);
             // 
             // setNoteToolStripMenuItem
             // 
             this.setNoteToolStripMenuItem.Name = "setNoteToolStripMenuItem";
-            this.setNoteToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.setNoteToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.setNoteToolStripMenuItem.Text = "Set Note";
             this.setNoteToolStripMenuItem.Click += new System.EventHandler(this.setNoteToolStripMenuItem_Click);
             // 
             // createEditBookmarkToolStripMenuItem
             // 
             this.createEditBookmarkToolStripMenuItem.Name = "createEditBookmarkToolStripMenuItem";
-            this.createEditBookmarkToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.createEditBookmarkToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.createEditBookmarkToolStripMenuItem.Text = "Create/Edit Bookmark";
             this.createEditBookmarkToolStripMenuItem.Click += new System.EventHandler(this.createEditBookmarkToolStripMenuItem_Click);
             // 
             // toolStripMenuItemStartStop
             // 
             this.toolStripMenuItemStartStop.Name = "toolStripMenuItemStartStop";
-            this.toolStripMenuItemStartStop.Size = new System.Drawing.Size(387, 22);
+            this.toolStripMenuItemStartStop.Size = new System.Drawing.Size(636, 34);
             this.toolStripMenuItemStartStop.Text = "Set Start/Stop point for travel calculations";
             this.toolStripMenuItemStartStop.Click += new System.EventHandler(this.toolStripMenuItemStartStop_Click);
             // 
             // gotoNextStartStopMarkerToolStripMenuItem
             // 
             this.gotoNextStartStopMarkerToolStripMenuItem.Name = "gotoNextStartStopMarkerToolStripMenuItem";
-            this.gotoNextStartStopMarkerToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.gotoNextStartStopMarkerToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.gotoNextStartStopMarkerToolStripMenuItem.Text = "Jump to next Start/Stop marker";
             this.gotoNextStartStopMarkerToolStripMenuItem.Click += new System.EventHandler(this.gotoNextStartStopMarkerToolStripMenuItem_Click);
             // 
             // mapGotoStartoolStripMenuItem
             // 
             this.mapGotoStartoolStripMenuItem.Name = "mapGotoStartoolStripMenuItem";
-            this.mapGotoStartoolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.mapGotoStartoolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.mapGotoStartoolStripMenuItem.Text = "Go to star on 3D Map";
             this.mapGotoStartoolStripMenuItem.Click += new System.EventHandler(this.mapGotoStartoolStripMenuItem_Click);
             // 
             // viewOnEDSMToolStripMenuItem
             // 
             this.viewOnEDSMToolStripMenuItem.Name = "viewOnEDSMToolStripMenuItem";
-            this.viewOnEDSMToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.viewOnEDSMToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.viewOnEDSMToolStripMenuItem.Text = "View on EDSM";
             this.viewOnEDSMToolStripMenuItem.Click += new System.EventHandler(this.viewOnEDSMToolStripMenuItem_Click);
             // 
             // starMapColourToolStripMenuItem
             // 
             this.starMapColourToolStripMenuItem.Name = "starMapColourToolStripMenuItem";
-            this.starMapColourToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.starMapColourToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.starMapColourToolStripMenuItem.Text = "Star Map Colour...";
             this.starMapColourToolStripMenuItem.Click += new System.EventHandler(this.starMapColourToolStripMenuItem_Click);
             // 
@@ -381,118 +396,118 @@ namespace EDDiscovery.UserControls
             this.routeToolStripMenuItem,
             this.explorationPanelToolStripMenuItem});
             this.addToTrilaterationToolStripMenuItem.Name = "addToTrilaterationToolStripMenuItem";
-            this.addToTrilaterationToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.addToTrilaterationToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.addToTrilaterationToolStripMenuItem.Text = "Add to ...";
             // 
             // trilaterationToolStripMenuItem
             // 
             this.trilaterationToolStripMenuItem.Name = "trilaterationToolStripMenuItem";
-            this.trilaterationToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.trilaterationToolStripMenuItem.Size = new System.Drawing.Size(457, 34);
             this.trilaterationToolStripMenuItem.Text = "System on Trilateration Panel";
             this.trilaterationToolStripMenuItem.Click += new System.EventHandler(this.trilaterationToolStripMenuItem_Click);
             // 
             // wantedSystemsToolStripMenuItem
             // 
             this.wantedSystemsToolStripMenuItem.Name = "wantedSystemsToolStripMenuItem";
-            this.wantedSystemsToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.wantedSystemsToolStripMenuItem.Size = new System.Drawing.Size(457, 34);
             this.wantedSystemsToolStripMenuItem.Text = "Wanted Systems on Trilateration Panel";
             this.wantedSystemsToolStripMenuItem.Click += new System.EventHandler(this.wantedSystemsToolStripMenuItem_Click);
             // 
             // bothToolStripMenuItem
             // 
             this.bothToolStripMenuItem.Name = "bothToolStripMenuItem";
-            this.bothToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.bothToolStripMenuItem.Size = new System.Drawing.Size(457, 34);
             this.bothToolStripMenuItem.Text = "Both of the above";
             this.bothToolStripMenuItem.Click += new System.EventHandler(this.bothToolStripMenuItem_Click);
             // 
             // routeToolStripMenuItem
             // 
             this.routeToolStripMenuItem.Name = "routeToolStripMenuItem";
-            this.routeToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.routeToolStripMenuItem.Size = new System.Drawing.Size(457, 34);
             this.routeToolStripMenuItem.Text = "Expedition Panel";
             this.routeToolStripMenuItem.Click += new System.EventHandler(this.routeToolStripMenuItem_Click);
             // 
             // explorationPanelToolStripMenuItem
             // 
             this.explorationPanelToolStripMenuItem.Name = "explorationPanelToolStripMenuItem";
-            this.explorationPanelToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.explorationPanelToolStripMenuItem.Size = new System.Drawing.Size(457, 34);
             this.explorationPanelToolStripMenuItem.Text = "Exploration Panel";
             this.explorationPanelToolStripMenuItem.Click += new System.EventHandler(this.explorationPanelToolStripMenuItem_Click);
             // 
             // moveToAnotherCommanderToolStripMenuItem
             // 
             this.moveToAnotherCommanderToolStripMenuItem.Name = "moveToAnotherCommanderToolStripMenuItem";
-            this.moveToAnotherCommanderToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.moveToAnotherCommanderToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.moveToAnotherCommanderToolStripMenuItem.Text = "Move Entries to another Commander";
             this.moveToAnotherCommanderToolStripMenuItem.Click += new System.EventHandler(this.moveToAnotherCommanderToolStripMenuItem_Click);
             // 
             // hideSystemToolStripMenuItem
             // 
             this.hideSystemToolStripMenuItem.Name = "hideSystemToolStripMenuItem";
-            this.hideSystemToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.hideSystemToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.hideSystemToolStripMenuItem.Text = "Hide Entries";
             this.hideSystemToolStripMenuItem.Click += new System.EventHandler(this.hideSystemToolStripMenuItem_Click);
             // 
             // selectCorrectSystemToolStripMenuItem
             // 
             this.selectCorrectSystemToolStripMenuItem.Name = "selectCorrectSystemToolStripMenuItem";
-            this.selectCorrectSystemToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.selectCorrectSystemToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.selectCorrectSystemToolStripMenuItem.Text = "Assign new system";
             this.selectCorrectSystemToolStripMenuItem.Click += new System.EventHandler(this.selectCorrectSystemToolStripMenuItem_Click);
             // 
             // removeJournalEntryToolStripMenuItem
             // 
             this.removeJournalEntryToolStripMenuItem.Name = "removeJournalEntryToolStripMenuItem";
-            this.removeJournalEntryToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.removeJournalEntryToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.removeJournalEntryToolStripMenuItem.Text = "Remove Journal Entry";
             this.removeJournalEntryToolStripMenuItem.Click += new System.EventHandler(this.removeJournalEntryToolStripMenuItem_Click);
             // 
             // sendUnsyncedScanToEDDNToolStripMenuItem
             // 
             this.sendUnsyncedScanToEDDNToolStripMenuItem.Name = "sendUnsyncedScanToEDDNToolStripMenuItem";
-            this.sendUnsyncedScanToEDDNToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.sendUnsyncedScanToEDDNToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.sendUnsyncedScanToEDDNToolStripMenuItem.Text = "Send unsynced scan to EDDN";
             this.sendUnsyncedScanToEDDNToolStripMenuItem.Click += new System.EventHandler(this.sendUnsyncedScanToEDDNToolStripMenuItem_Click);
             // 
             // runActionsOnThisEntryToolStripMenuItem
             // 
             this.runActionsOnThisEntryToolStripMenuItem.Name = "runActionsOnThisEntryToolStripMenuItem";
-            this.runActionsOnThisEntryToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.runActionsOnThisEntryToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.runActionsOnThisEntryToolStripMenuItem.Text = "Run Actions on this entry";
             this.runActionsOnThisEntryToolStripMenuItem.Click += new System.EventHandler(this.runActionsOnThisEntryToolStripMenuItem_Click);
             // 
             // copyJournalEntryToClipboardToolStripMenuItem
             // 
             this.copyJournalEntryToClipboardToolStripMenuItem.Name = "copyJournalEntryToClipboardToolStripMenuItem";
-            this.copyJournalEntryToClipboardToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.copyJournalEntryToClipboardToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.copyJournalEntryToClipboardToolStripMenuItem.Text = "Copy journal entry to clipboard/Log";
             this.copyJournalEntryToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyJournalEntryToClipboardToolStripMenuItem_Click);
             // 
             // writeEventInfoToLogDebugToolStripMenuItem
             // 
             this.writeEventInfoToLogDebugToolStripMenuItem.Name = "writeEventInfoToLogDebugToolStripMenuItem";
-            this.writeEventInfoToLogDebugToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.writeEventInfoToLogDebugToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.writeEventInfoToLogDebugToolStripMenuItem.Text = "Write event class info to Log (Debug)";
             this.writeEventInfoToLogDebugToolStripMenuItem.Click += new System.EventHandler(this.writeEventInfoToLogDebugToolStripMenuItem_Click);
             // 
             // runActionsAcrossSelectionToolSpeechStripMenuItem
             // 
             this.runActionsAcrossSelectionToolSpeechStripMenuItem.Name = "runActionsAcrossSelectionToolSpeechStripMenuItem";
-            this.runActionsAcrossSelectionToolSpeechStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.runActionsAcrossSelectionToolSpeechStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.runActionsAcrossSelectionToolSpeechStripMenuItem.Text = "Run actions across selection for speech debugging (Debug)";
             this.runActionsAcrossSelectionToolSpeechStripMenuItem.Click += new System.EventHandler(this.runActionsAcrossSelectionToolStripMenuItem_Click);
             // 
             // runSelectionThroughInaraSystemToolStripMenuItem
             // 
             this.runSelectionThroughInaraSystemToolStripMenuItem.Name = "runSelectionThroughInaraSystemToolStripMenuItem";
-            this.runSelectionThroughInaraSystemToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.runSelectionThroughInaraSystemToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.runSelectionThroughInaraSystemToolStripMenuItem.Text = "Run selection through Inara System (Debug)";
             this.runSelectionThroughInaraSystemToolStripMenuItem.Click += new System.EventHandler(this.runSelectionThroughInaraSystemToolStripMenuItem_Click);
             // 
             // runEntryThroughProfileSystemToolStripMenuItem
             // 
             this.runEntryThroughProfileSystemToolStripMenuItem.Name = "runEntryThroughProfileSystemToolStripMenuItem";
-            this.runEntryThroughProfileSystemToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.runEntryThroughProfileSystemToolStripMenuItem.Size = new System.Drawing.Size(636, 34);
             this.runEntryThroughProfileSystemToolStripMenuItem.Text = "Run entry through Profile System (Debug)";
             this.runEntryThroughProfileSystemToolStripMenuItem.Click += new System.EventHandler(this.runEntryThroughProfileSystemToolStripMenuItem_Click);
             // 
@@ -510,10 +525,11 @@ namespace EDDiscovery.UserControls
             this.dataViewScrollerPanel.Controls.Add(this.dataGridViewTravel);
             this.dataViewScrollerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataViewScrollerPanel.InternalMargin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.dataViewScrollerPanel.Location = new System.Drawing.Point(0, 32);
+            this.dataViewScrollerPanel.Location = new System.Drawing.Point(0, 59);
+            this.dataViewScrollerPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dataViewScrollerPanel.Name = "dataViewScrollerPanel";
             this.dataViewScrollerPanel.ScrollBarWidth = 20;
-            this.dataViewScrollerPanel.Size = new System.Drawing.Size(870, 578);
+            this.dataViewScrollerPanel.Size = new System.Drawing.Size(1595, 1067);
             this.dataViewScrollerPanel.TabIndex = 28;
             this.dataViewScrollerPanel.VerticalScrollBarDockRight = true;
             // 
@@ -521,8 +537,9 @@ namespace EDDiscovery.UserControls
             // 
             this.panelOutlining.KeepLastEntriesVisibleOnRollUp = 1;
             this.panelOutlining.Location = new System.Drawing.Point(0, 0);
+            this.panelOutlining.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panelOutlining.Name = "panelOutlining";
-            this.panelOutlining.Size = new System.Drawing.Size(10, 578);
+            this.panelOutlining.Size = new System.Drawing.Size(18, 1067);
             this.panelOutlining.TabIndex = 5;
             // 
             // vScrollBarCustom
@@ -536,13 +553,14 @@ namespace EDDiscovery.UserControls
             this.vScrollBarCustom.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.vScrollBarCustom.HideScrollBar = true;
             this.vScrollBarCustom.LargeChange = 0;
-            this.vScrollBarCustom.Location = new System.Drawing.Point(847, 0);
+            this.vScrollBarCustom.Location = new System.Drawing.Point(1572, 0);
+            this.vScrollBarCustom.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.vScrollBarCustom.Maximum = -1;
             this.vScrollBarCustom.Minimum = 0;
             this.vScrollBarCustom.MouseOverButtonColor = System.Drawing.Color.Green;
             this.vScrollBarCustom.MousePressedButtonColor = System.Drawing.Color.Red;
             this.vScrollBarCustom.Name = "vScrollBarCustom";
-            this.vScrollBarCustom.Size = new System.Drawing.Size(20, 578);
+            this.vScrollBarCustom.Size = new System.Drawing.Size(20, 1067);
             this.vScrollBarCustom.SliderColor = System.Drawing.Color.DarkGray;
             this.vScrollBarCustom.SmallChange = 1;
             this.vScrollBarCustom.TabIndex = 4;
@@ -567,11 +585,12 @@ namespace EDDiscovery.UserControls
             this.ColumnNote});
             this.dataGridViewTravel.ContextMenuStrip = this.historyContextMenu;
             this.dataGridViewTravel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewTravel.Location = new System.Drawing.Point(10, 0);
+            this.dataGridViewTravel.Location = new System.Drawing.Point(18, 0);
+            this.dataGridViewTravel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dataGridViewTravel.Name = "dataGridViewTravel";
             this.dataGridViewTravel.RowHeadersWidth = 100;
             this.dataGridViewTravel.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridViewTravel.Size = new System.Drawing.Size(837, 578);
+            this.dataGridViewTravel.Size = new System.Drawing.Size(1554, 1067);
             this.dataGridViewTravel.TabIndex = 3;
             this.dataGridViewTravel.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTravel_CellClick);
             this.dataGridViewTravel.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTravel_CellDoubleClick);
@@ -623,12 +642,13 @@ namespace EDDiscovery.UserControls
             // 
             // contextMenuStripOutlines
             // 
+            this.contextMenuStripOutlines.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.contextMenuStripOutlines.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.outliningOnOffToolStripMenuItem,
             this.scanEventsOutliningOnOffToolStripMenuItem,
             this.toolStripRollUpOlderOutlines});
             this.contextMenuStripOutlines.Name = "contextMenuStripOutlines";
-            this.contextMenuStripOutlines.Size = new System.Drawing.Size(190, 70);
+            this.contextMenuStripOutlines.Size = new System.Drawing.Size(289, 106);
             // 
             // outliningOnOffToolStripMenuItem
             // 
@@ -636,7 +656,7 @@ namespace EDDiscovery.UserControls
             this.outliningOnOffToolStripMenuItem.CheckOnClick = true;
             this.outliningOnOffToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.outliningOnOffToolStripMenuItem.Name = "outliningOnOffToolStripMenuItem";
-            this.outliningOnOffToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.outliningOnOffToolStripMenuItem.Size = new System.Drawing.Size(288, 34);
             this.outliningOnOffToolStripMenuItem.Text = "Outlining On";
             // 
             // scanEventsOutliningOnOffToolStripMenuItem
@@ -645,7 +665,7 @@ namespace EDDiscovery.UserControls
             this.scanEventsOutliningOnOffToolStripMenuItem.CheckOnClick = true;
             this.scanEventsOutliningOnOffToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.scanEventsOutliningOnOffToolStripMenuItem.Name = "scanEventsOutliningOnOffToolStripMenuItem";
-            this.scanEventsOutliningOnOffToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.scanEventsOutliningOnOffToolStripMenuItem.Size = new System.Drawing.Size(288, 34);
             this.scanEventsOutliningOnOffToolStripMenuItem.Text = "Scan Events Outlining";
             // 
             // toolStripRollUpOlderOutlines
@@ -655,7 +675,7 @@ namespace EDDiscovery.UserControls
             this.rollUpAfterFirstToolStripMenuItem,
             this.rollUpAfter5ToolStripMenuItem});
             this.toolStripRollUpOlderOutlines.Name = "toolStripRollUpOlderOutlines";
-            this.toolStripRollUpOlderOutlines.Size = new System.Drawing.Size(189, 22);
+            this.toolStripRollUpOlderOutlines.Size = new System.Drawing.Size(288, 34);
             this.toolStripRollUpOlderOutlines.Text = "Roll up older entries";
             // 
             // rollUpOffToolStripMenuItem
@@ -663,7 +683,7 @@ namespace EDDiscovery.UserControls
             this.rollUpOffToolStripMenuItem.Checked = true;
             this.rollUpOffToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.rollUpOffToolStripMenuItem.Name = "rollUpOffToolStripMenuItem";
-            this.rollUpOffToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.rollUpOffToolStripMenuItem.Size = new System.Drawing.Size(194, 34);
             this.rollUpOffToolStripMenuItem.Text = "Off";
             // 
             // rollUpAfterFirstToolStripMenuItem
@@ -671,7 +691,7 @@ namespace EDDiscovery.UserControls
             this.rollUpAfterFirstToolStripMenuItem.Checked = true;
             this.rollUpAfterFirstToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.rollUpAfterFirstToolStripMenuItem.Name = "rollUpAfterFirstToolStripMenuItem";
-            this.rollUpAfterFirstToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.rollUpAfterFirstToolStripMenuItem.Size = new System.Drawing.Size(194, 34);
             this.rollUpAfterFirstToolStripMenuItem.Text = "After First";
             // 
             // rollUpAfter5ToolStripMenuItem
@@ -679,17 +699,18 @@ namespace EDDiscovery.UserControls
             this.rollUpAfter5ToolStripMenuItem.Checked = true;
             this.rollUpAfter5ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.rollUpAfter5ToolStripMenuItem.Name = "rollUpAfter5ToolStripMenuItem";
-            this.rollUpAfter5ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.rollUpAfter5ToolStripMenuItem.Size = new System.Drawing.Size(194, 34);
             this.rollUpAfter5ToolStripMenuItem.Text = "After 5";
             // 
             // UserControlTravelGrid
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataViewScrollerPanel);
             this.Controls.Add(this.TopPanel);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "UserControlTravelGrid";
-            this.Size = new System.Drawing.Size(870, 610);
+            this.Size = new System.Drawing.Size(1595, 1126);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             this.historyContextMenu.ResumeLayout(false);
